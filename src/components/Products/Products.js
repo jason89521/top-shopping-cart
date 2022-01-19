@@ -1,27 +1,32 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { Box, Sidebar, SidebarLink, Main, List, ListItem } from './Products.style';
 import { useGetCategoriesQuery, useGetProductsQuery } from '../../slices/fakeStoreApiSlice';
+import { addProduct } from '../../slices/cartSlice';
 
 const Products = () => {
-  const { categoryName } = useParams();
+  const { currentCategory } = useParams();
   const { data: categories, isFetching: isCategoriesFetching } = useGetCategoriesQuery();
   const { data: products, isFetching: isProductsFetching } = useGetProductsQuery();
+
+  const dispatch = useDispatch();
 
   const renderCategories = () => {
     if (isCategoriesFetching) return <span>Loading...</span>;
 
+    // Create an array of sidebar's links, then prepend a link of all products
     const ret = categories.map(category => {
-      const isActive = categoryName === category;
+      const active = category === currentCategory ? 'active' : '';
       return (
-        <SidebarLink to={`/products/${category}`} key={category} isActive={isActive}>
+        <SidebarLink to={`/products/${category}`} key={category} className={active}>
           {category}
         </SidebarLink>
       );
     });
     ret.unshift(
-      <SidebarLink to="/products" key="All" isActive={!categoryName}>
+      <SidebarLink to="/products" key="All" className={!currentCategory ? 'active' : ''}>
         All
       </SidebarLink>
     );
@@ -35,7 +40,7 @@ const Products = () => {
         <h1>{product.title}</h1>
         <div>
           <span>${product.price}</span>
-          <button>Add to cart</button>
+          <button onClick={() => dispatch(addProduct(product))}>Add to cart</button>
         </div>
       </ListItem>
     );
@@ -44,9 +49,9 @@ const Products = () => {
   const renderProducts = () => {
     if (isProductsFetching) return <span>Loading</span>;
 
-    if (categoryName)
+    if (currentCategory)
       return products
-        .filter(product => product.category === categoryName)
+        .filter(product => product.category === currentCategory)
         .map(product => renderProduct(product));
 
     return products.map(product => renderProduct(product));

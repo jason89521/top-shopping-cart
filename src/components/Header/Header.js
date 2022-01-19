@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyledHeader, BrandLink, OtherLink } from './Header.style';
+import Icon from './Icon';
 import shoppingCart from '../../shopping_cart.png';
 
 const Header = () => {
@@ -12,7 +13,7 @@ const Header = () => {
         <div>
           <OtherLink to="/products">Products</OtherLink>
           <OtherLink to="/contact">Contact</OtherLink>
-          <img src={shoppingCart} alt="Shopping cart icon" />
+          <Icon />
         </div>
       </StyledHeader>
     </React.Fragment>

@@ -17,7 +17,7 @@ const App = () => {
         <Routes>
           <Route index element={<Home />} />
           <Route path="products" element={<Products />} />
-          <Route path="products/:categoryName" element={<Products />} />
+          <Route path="products/:currentCategory" element={<Products />} />
           <Route path="contact" element={<Contact />} />
 
           {/* The following route match only when no other route match */}

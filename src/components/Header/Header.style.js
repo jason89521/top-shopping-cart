@@ -34,4 +34,4 @@ export const BrandLink = styled(Link)`
 
 export const OtherLink = styled(Link)`
   font-size: 2rem;
-`
+`;

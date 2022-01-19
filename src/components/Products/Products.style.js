@@ -20,7 +20,6 @@ export const Sidebar = styled.aside`
 
 export const SidebarLink = styled(Link)`
   border-radius: 10px;
-  background-color: ${props => (props.isActive ? 'rgba(255, 250, 225, 1)' : '')};
   color: #696969;
   font-size: 1.25rem;
   text-transform: capitalize;
@@ -28,6 +27,10 @@ export const SidebarLink = styled(Link)`
 
   &:hover {
     background-color: rgba(255, 250, 225, 0.5);
+  }
+
+  &.active {
+    background-color: rgba(255, 250, 225, 1);
   }
 `;
 
