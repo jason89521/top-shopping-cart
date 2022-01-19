@@ -11,13 +11,13 @@ const App = () => {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <BrowserRouter>
+      <BrowserRouter basename='/top-shopping-cart'>
         <Header />
         <Routes>
           <Route index element={<Home />} />
-          <Route path="products" element={<Products />} />
-          <Route path="products/:currentCategory" element={<Products />} />
-          <Route path="cart" element={<Cart />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:currentCategory" element={<Products />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>
