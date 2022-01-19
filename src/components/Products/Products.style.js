@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import Spinner from '../Spinner';
+
 export const Box = styled.div`
   align-items: flex-start;
   display: flex;
@@ -92,4 +94,10 @@ export const ListItem = styled.li`
       transform: translateY(-2px);
     }
   }
+`;
+
+export const Loader = styled(Spinner)`
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto;
 `;

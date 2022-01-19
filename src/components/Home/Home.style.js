@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const HomeBox = styled.div``;
+import Spinner from '../Spinner';
 
 export const Heading = styled.h1`
   display: flex;
@@ -36,3 +36,10 @@ export const CardsBox = styled.div`
     height: 20rem;
   }
 `;
+
+
+export const Loader = styled(Spinner)`
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto;
+`

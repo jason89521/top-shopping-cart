@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useGetProductsQuery, useGetCategoriesQuery } from '../../slices/fakeStoreApiSlice';
 import Card from './Card';
-import { HomeBox, Heading, CardsBox } from './Home.style';
+import { Heading, CardsBox, Loader } from './Home.style';
 
 const getFirstProductByCategories = (products, categories) => {
   const ret = [];
@@ -19,7 +19,7 @@ const Home = () => {
 
   const renderContent = () => {
     if (isProductsFetching || isCategoriesFetching) {
-      return <div>Loading...</div>;
+      return <Loader />;
     }
 
     const demoProducts = getFirstProductByCategories(products, categories).map(product => {
@@ -35,19 +35,19 @@ const Home = () => {
       );
     });
 
-    return demoProducts;
+    return <CardsBox>{demoProducts}</CardsBox>;
   };
 
   return (
-    <HomeBox>
+    <div>
       <Heading>
         <span>The Best Store You've Ever Seen!</span>
         <span>We try to make the the most popular products in the world.</span>
         <span>We promise that our products are the best products you've ever seen.</span>
         <span>Just try it!</span>
       </Heading>
-      <CardsBox>{renderContent()}</CardsBox>
-    </HomeBox>
+      {renderContent()}
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { Box, Sidebar, SidebarLink, Main, List, ListItem } from './Products.style';
+import { Box, Sidebar, SidebarLink, Main, List, ListItem, Loader } from './Products.style';
 import { useGetCategoriesQuery, useGetProductsQuery } from '../../slices/fakeStoreApiSlice';
 import { addProduct } from '../../slices/cartSlice';
 
@@ -14,7 +14,7 @@ const Products = () => {
   const dispatch = useDispatch();
 
   const renderCategories = () => {
-    if (isCategoriesFetching) return <span>Loading...</span>;
+    if (isCategoriesFetching) return <Loader />;
 
     return categories.map(category => {
       const active = category === currentCategory ? 'active' : '';
@@ -40,7 +40,7 @@ const Products = () => {
   };
 
   const renderProducts = () => {
-    if (isProductsFetching) return <span>Loading</span>;
+    if (isProductsFetching) return <Loader />;
 
     if (currentCategory)
       return products
