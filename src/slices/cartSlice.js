@@ -15,19 +15,35 @@ export const cartSlice = createSlice({
   }),
   reducers: {
     addProduct: (state, action) => {
-      const entity = { ...action.payload };
-      const selectedEntity = cartAdapter.getSelectors().selectById(state, entity.id);
+      const { id } = action.payload;
+      const selectedEntity = cartAdapter.getSelectors().selectById(state, id);
       if (selectedEntity) {
         const newEntity = { ...selectedEntity, cnt: selectedEntity.cnt + 1 };
         cartAdapter.setOne(state, newEntity);
       } else {
-        entity.cnt = 1;
-        cartAdapter.addOne(state, entity);
+        const newEntity = { ...action.payload, cnt: 1 };
+        cartAdapter.addOne(state, newEntity);
       }
+      state.totalProducts += 1;
+    },
+    updateCntById: {
+      reducer: (state, action) => {
+        const { id, newCnt } = action.payload;
+        const selectedEntity = cartAdapter.getSelectors().selectById(state, id);
+        state.totalProducts += newCnt - selectedEntity.cnt;
+        cartAdapter.setOne(state, { ...selectedEntity, cnt: newCnt });
+      },
+      prepare: (id, cnt) => {
+        const cntNum = parseInt(cnt, 10);
+        const newCnt = isNaN(cntNum) || cntNum < 0 ? 0 : cntNum;
+        return { payload: { id, newCnt } };
+      },
     },
   },
 });
 
-export const { addProduct } = cartSlice.actions;
+export const { addProduct, updateCntById } = cartSlice.actions;
+
+export const { selectAll: getAllFromCart } = cartAdapter.getSelectors();
 
 export default cartSlice.reducer;

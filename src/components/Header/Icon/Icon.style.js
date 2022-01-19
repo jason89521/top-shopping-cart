@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import shoppingCart from '../../../shopping_cart.png';
+import shoppingCart from '../../../images/shopping_cart.png';
 
 export const Div = styled.div`
   position: relative;

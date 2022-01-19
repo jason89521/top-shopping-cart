@@ -16,8 +16,7 @@ const Products = () => {
   const renderCategories = () => {
     if (isCategoriesFetching) return <span>Loading...</span>;
 
-    // Create an array of sidebar's links, then prepend a link of all products
-    const ret = categories.map(category => {
+    return categories.map(category => {
       const active = category === currentCategory ? 'active' : '';
       return (
         <SidebarLink to={`/products/${category}`} key={category} className={active}>
@@ -25,12 +24,6 @@ const Products = () => {
         </SidebarLink>
       );
     });
-    ret.unshift(
-      <SidebarLink to="/products" key="All" className={!currentCategory ? 'active' : ''}>
-        All
-      </SidebarLink>
-    );
-    return ret;
   };
 
   const renderProduct = product => {
@@ -59,7 +52,12 @@ const Products = () => {
 
   return (
     <Box>
-      <Sidebar>{renderCategories()}</Sidebar>
+      <Sidebar>
+        <SidebarLink to="/products" key="All" className={!currentCategory ? 'active' : ''}>
+          All
+        </SidebarLink>
+        {renderCategories()}
+      </Sidebar>
       <Main>
         <List>{renderProducts()}</List>
       </Main>
