@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/top-shopping-cart/static/js/main.887202e9.js",
+    "main.js": "/top-shopping-cart/static/js/main.8a48ed92.js",
     "index.html": "/top-shopping-cart/index.html",
-    "main.887202e9.js.map": "/top-shopping-cart/static/js/main.887202e9.js.map"
+    "main.8a48ed92.js.map": "/top-shopping-cart/static/js/main.8a48ed92.js.map"
   },
   "entrypoints": [
-    "static/js/main.887202e9.js"
+    "static/js/main.8a48ed92.js"
   ]
 }
