@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { StyledHeader, BrandLink, OtherLink } from './Header.style';
 import Icon from './Icon';
-import shoppingCart from '../../shopping_cart.png';
 
 const Header = () => {
   return (
@@ -13,7 +14,9 @@ const Header = () => {
         <div>
           <OtherLink to="/products">Products</OtherLink>
           <OtherLink to="/contact">Contact</OtherLink>
-          <Icon />
+          <Link to="/cart">
+            <Icon />
+          </Link>
         </div>
       </StyledHeader>
     </React.Fragment>

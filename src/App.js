@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Products from './components/Products';
 import Contact from './components/Contact';
 import Error from './components/Error';
+import Cart from './components/Cart';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="products" element={<Products />} />
           <Route path="products/:currentCategory" element={<Products />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="cart" element={<Cart />} />
 
           {/* The following route match only when no other route match */}
           <Route path="*" element={<Error />} />

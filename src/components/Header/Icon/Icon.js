@@ -4,12 +4,11 @@ import { useSelector } from 'react-redux';
 import { Div, Circle } from './Icon.style';
 
 const Icon = () => {
-  const totalInCart = useSelector(state => state.cart.total);
-  console.log(totalInCart);
+  const totalProducts = useSelector(state => state.cart.totalProducts);
 
   return (
     <Div>
-      <Circle>{totalInCart}</Circle>
+      <Circle>{totalProducts}</Circle>
     </Div>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useGetProductsQuery, useGetCategoriesQuery } from '../../slices/fakeStoreApiSlice';
-import Card from '../Card';
+import Card from './Card';
 import { HomeBox, Heading, CardsBox } from './Home.style';
 
 const getFirstProductByCategories = (products, categories) => {

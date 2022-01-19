@@ -1,26 +1,29 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  total: 0,
-};
+const cartAdapter = createEntityAdapter({
+  sortComparer: (a, b) => {
+    if (a > b) return 1;
+    if (a < b) return -1;
+    return 0;
+  },
+});
 
 export const cartSlice = createSlice({
   name: 'cart',
-  initialState,
+  initialState: cartAdapter.getInitialState({
+    totalProducts: 0,
+  }),
   reducers: {
     addProduct: (state, action) => {
-      const { id, title, price, image } = action.payload;
-      state.total += 1;
-      // Check whether the product has already been in the state,
-      // if so, plus one. Otherwise, add this product to the state.
-      if (state[id]) state[id].cnt += 1;
-      else
-        state[id] = {
-          cnt: 1,
-          title,
-          image,
-          price,
-        };
+      const entity = { ...action.payload };
+      const selectedEntity = cartAdapter.getSelectors().selectById(state, entity.id);
+      if (selectedEntity) {
+        const newEntity = { ...selectedEntity, cnt: selectedEntity.cnt + 1 };
+        cartAdapter.setOne(state, newEntity);
+      } else {
+        entity.cnt = 1;
+        cartAdapter.addOne(state, entity);
+      }
     },
   },
 });
