@@ -1,7 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { getAllFromCart } from '../../slices/cartSlice';
+import { getAllFromCart, removeById } from '../../slices/cartSlice';
 import { Box, List, ListItem } from './Cart.style';
 import deleteIcon from '../../images/delete.png';
 import Input from './Input';
@@ -9,6 +9,8 @@ import Input from './Input';
 const Cart = () => {
   const cart = useSelector(state => state.cart);
   const prodcuts = getAllFromCart(cart);
+
+  const dispatch = useDispatch();
 
   const renderListItem = () => {
     return prodcuts.map(product => {
@@ -20,7 +22,7 @@ const Cart = () => {
             <span className="price">${product.price}</span>
             <Input product={product} />
           </div>
-          <img src={deleteIcon} alt="delete icon" />
+          <img onClick={() => dispatch(removeById(product.id))} src={deleteIcon} alt="delete icon" />
         </ListItem>
       );
     });

@@ -10,9 +10,7 @@ const cartAdapter = createEntityAdapter({
 
 export const cartSlice = createSlice({
   name: 'cart',
-  initialState: cartAdapter.getInitialState({
-    totalProducts: 0,
-  }),
+  initialState: cartAdapter.getInitialState(),
   reducers: {
     addProduct: (state, action) => {
       const { id } = action.payload;
@@ -24,13 +22,11 @@ export const cartSlice = createSlice({
         const newEntity = { ...action.payload, cnt: 1 };
         cartAdapter.addOne(state, newEntity);
       }
-      state.totalProducts += 1;
     },
     updateCntById: {
       reducer: (state, action) => {
         const { id, newCnt } = action.payload;
         const selectedEntity = cartAdapter.getSelectors().selectById(state, id);
-        state.totalProducts += newCnt - selectedEntity.cnt;
         cartAdapter.setOne(state, { ...selectedEntity, cnt: newCnt });
       },
       prepare: (id, cnt) => {
@@ -43,14 +39,12 @@ export const cartSlice = createSlice({
       const selectedEntity = { ...cartAdapter.getSelectors().selectById(state, action.payload) };
       selectedEntity.cnt += 1;
       cartAdapter.setOne(state, selectedEntity);
-      state.totalProducts += 1;
     },
     decrementById: (state, action) => {
       const selectedEntity = { ...cartAdapter.getSelectors().selectById(state, action.payload) };
       const newCnt = selectedEntity.cnt - 1;
       selectedEntity.cnt = newCnt < 0 ? 0 : newCnt;
       cartAdapter.setOne(state, selectedEntity);
-      state.totalProducts -= newCnt < 0 ? 0 : 1;
     },
     removeById: cartAdapter.removeOne,
   },
