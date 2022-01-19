@@ -43,7 +43,7 @@ const Cart = () => {
       </button>
       <List>
         {renderListItem()}
-        <PayButton>Pay now</PayButton>
+        <PayButton disabled={prodcuts.length === 0}>pay now</PayButton>
       </List>
     </Box>
   );

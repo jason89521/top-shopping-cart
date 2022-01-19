@@ -107,4 +107,11 @@ export const PayButton = styled.button`
   &:active {
     transform: translateY(-2px);
   }
+
+  &:disabled {
+    cursor: not-allowed ;
+    background-color: #a0a0a0;
+    color: #707070;
+    transform: translateY(0px);
+  }
 `;

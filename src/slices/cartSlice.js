@@ -27,6 +27,10 @@ export const cartSlice = createSlice({
       reducer: (state, action) => {
         const { id, newCnt } = action.payload;
         const selectedEntity = cartAdapter.getSelectors().selectById(state, id);
+        if (newCnt === 0) {
+          cartAdapter.removeOne(state, id);
+          return;
+        }
         cartAdapter.setOne(state, { ...selectedEntity, cnt: newCnt });
       },
       prepare: (id, cnt) => {
@@ -43,7 +47,11 @@ export const cartSlice = createSlice({
     decrementById: (state, action) => {
       const selectedEntity = { ...cartAdapter.getSelectors().selectById(state, action.payload) };
       const newCnt = selectedEntity.cnt - 1;
-      selectedEntity.cnt = newCnt < 0 ? 0 : newCnt;
+      if (newCnt === 0) {
+        cartAdapter.removeOne(state, selectedEntity.id);
+        return;
+      }
+      selectedEntity.cnt = newCnt;
       cartAdapter.setOne(state, selectedEntity);
     },
     removeById: cartAdapter.removeOne,
