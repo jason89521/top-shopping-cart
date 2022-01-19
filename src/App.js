@@ -15,8 +15,9 @@ const App = () => {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route index element={<Home />} />
           <Route path="products" element={<Products />} />
+          <Route path="products/:categoryName" element={<Products />} />
           <Route path="contact" element={<Contact />} />
 
           {/* The following route match only when no other route match */}
