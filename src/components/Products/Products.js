@@ -13,14 +13,15 @@ const Products = () => {
     if (isCategoriesFetching) return <span>Loading...</span>;
 
     const ret = categories.map(category => {
+      const isActive = categoryName === category;
       return (
-        <SidebarLink to={`/products/${category}`} key={category}>
+        <SidebarLink to={`/products/${category}`} key={category} isActive={isActive}>
           {category}
         </SidebarLink>
       );
     });
     ret.unshift(
-      <SidebarLink to="/products" key="All">
+      <SidebarLink to="/products" key="All" isActive={!categoryName}>
         All
       </SidebarLink>
     );

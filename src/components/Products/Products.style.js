@@ -14,22 +14,22 @@ export const Sidebar = styled.aside`
   display: flex;
   flex-direction: column;
   flex-basis: 22.5rem;
+  gap: 1rem;
   padding: 2.5rem;
-
-  a {
-    border-radius: 10px;
-    color: #696969;
-    font-size: 1.25rem;
-    text-transform: capitalize;
-    padding: 1rem 2rem;
-
-    &:hover {
-      background-color: rgba(255, 250, 225, 0.5);
-    }
-  }
 `;
 
-export const SidebarLink = styled(Link)``;
+export const SidebarLink = styled(Link)`
+  border-radius: 10px;
+  background-color: ${props => (props.isActive ? 'rgba(255, 250, 225, 1)' : '')};
+  color: #696969;
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  padding: 1rem 2rem;
+
+  &:hover {
+    background-color: rgba(255, 250, 225, 0.5);
+  }
+`;
 
 export const Main = styled.main`
   flex-grow: 1;

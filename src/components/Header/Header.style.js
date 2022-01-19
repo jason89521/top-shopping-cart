@@ -17,6 +17,7 @@ export const StyledHeader = styled.header`
 
   & > div:last-child {
     display: flex;
+    align-items: center;
     gap: 2rem;
   }
 
