@@ -115,3 +115,11 @@ export const PayButton = styled.button`
     transform: translateY(0px);
   }
 `;
+
+export const TotalAmount = styled.span`
+  font-family: 'Inconsolata', monospace;
+  font-size: 2rem;
+  display: block;
+  text-align: center;
+  margin-bottom: 3rem;
+`
