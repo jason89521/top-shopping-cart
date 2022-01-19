@@ -13,7 +13,6 @@ const Header = () => {
         </div>
         <div>
           <OtherLink to="/products">Products</OtherLink>
-          <OtherLink to="/contact">Contact</OtherLink>
           <Link to="/cart">
             <Icon />
           </Link>
