@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { getAllFromCart, removeById } from '../../slices/cartSlice';
-import { Box, List, ListItem } from './Cart.style';
+import { Box, List, ListItem, PayButton } from './Cart.style';
 import deleteIcon from '../../images/delete.png';
 import Input from './Input';
 import backArrow from '../../images/back_arrow.png';
@@ -41,7 +41,10 @@ const Cart = () => {
         <img src={backArrow} alt="back" />
         <span>Back</span>
       </button>
-      <List>{renderListItem()}</List>
+      <List>
+        {renderListItem()}
+        <PayButton>Pay now</PayButton>
+      </List>
     </Box>
   );
 };

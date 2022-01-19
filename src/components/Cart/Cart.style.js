@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import backArrow from '../../images/back_arrow.png';
-
 export const Box = styled.div`
   position: relative;
 
@@ -50,10 +48,7 @@ export const ListItem = styled.li`
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-
-  &:not(:last-child) {
-    margin-bottom: 2rem;
-  }
+  margin-bottom: 2rem;
 
   img:first-child {
     width: 9rem;
@@ -86,5 +81,30 @@ export const ListItem = styled.li`
     gap: 1rem;
     flex-direction: column;
     align-items: center;
+  }
+`;
+
+export const PayButton = styled.button`
+  cursor: pointer;
+  display: block;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background-color: rgba(80, 184, 231, 1);
+  width: 10rem;
+  margin: 0 auto;
+  padding: 1rem;
+  color: white;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  backface-visibility: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  &:active {
+    transform: translateY(-2px);
   }
 `;
