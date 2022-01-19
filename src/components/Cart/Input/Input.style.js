@@ -15,25 +15,24 @@ export const Box = styled.div`
       appearance: none;
     }
   }
+`;
 
-  &::before {
-    content: '+';
-  }
+export const Button = styled.button`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  background-color: rgba(80, 184, 231, 1);
+  transition: all .2s;
 
-  &::after {
-    content: '-';
-  }
-
-  &::before,
-  &::after {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    color: white;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background-color: rgba(80, 184, 231, 1);
+  &:hover {
+    transform: scale(1.1);
   }
 `;

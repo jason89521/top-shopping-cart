@@ -39,10 +39,25 @@ export const cartSlice = createSlice({
         return { payload: { id, newCnt } };
       },
     },
+    incrementById: (state, action) => {
+      const selectedEntity = { ...cartAdapter.getSelectors().selectById(state, action.payload) };
+      selectedEntity.cnt += 1;
+      cartAdapter.setOne(state, selectedEntity);
+      state.totalProducts += 1;
+    },
+    decrementById: (state, action) => {
+      const selectedEntity = { ...cartAdapter.getSelectors().selectById(state, action.payload) };
+      const newCnt = selectedEntity.cnt - 1;
+      selectedEntity.cnt = newCnt < 0 ? 0 : newCnt;
+      cartAdapter.setOne(state, selectedEntity);
+      state.totalProducts -= newCnt < 0 ? 0 : 1;
+    },
+    removeById: cartAdapter.removeOne,
   },
 });
 
-export const { addProduct, updateCntById } = cartSlice.actions;
+export const { addProduct, updateCntById, incrementById, decrementById, removeById } =
+  cartSlice.actions;
 
 export const { selectAll: getAllFromCart } = cartAdapter.getSelectors();
 
